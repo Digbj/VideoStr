@@ -53,6 +53,15 @@ router.get("/all", async (req, res) => {
   }
 });
 
+// router.get("/all-less", async (req, res) => {
+//   try {
+//     const video = await Video.find().limit(5);
+//     res.status(200).json(video);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
 // get random video
 
 router.get("/get-random", verify, async (req, res) => {
