@@ -1,48 +1,59 @@
 import React from "react";
-import Nav from "./NavBar"
+import Nav from "./NavBar";
 import axios from "axios";
-import {useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import FetchVideo from "./VideoFetch";
-const HomePage=()=> {
-  
-  const [videos, setVideos] = useState([])
+const HomePage = () => {
+  const [videos, setVideos] = useState([]);
+  const [userName, setUserName] = useState("");
   const { currentUser } = useSelector((state) => state.user);
-  const GetData=()=>{
-      // const key = '541e4e6113f4a245be41d653a35850a6'
-      const url = `http://localhost:8080/api/videos/get-random`
-      const getPic = () => {
-          axios.get(url,{
-            headers: {
-              token: "Bearer " + currentUser.accessToken,
-            },
-          })
-              .then((res) => setVideos(Object.values(res.data)))
-              .catch((err) => { console.log(err) })
-              .finally(() => { })
-          console.log(videos);
-          // console.log(currentUser.accessToken)
-      }
-      getPic()
-  }
-  
-  useEffect(()=>{
-   
-    GetData();
 
-  },[])
+  useEffect(() => {
+    const GetData = async () => {
+      const url = `http://localhost:8080/api/videos/get-random`;
+
+      const res = await axios.get(url, {
+        headers: {
+          token: "Bearer " + currentUser.accessToken,
+        },
+      });
+      setVideos(res.data);
+
+      if (res.data) {
+        const getUser = await axios.get(
+          `http://localhost:8080/api/users/get-User/${res.data[0].publisherId}`
+        );
+        setUserName(getUser.data.username);
+      }
+    };
+
+    GetData();
+  }, [currentUser]);
+
+  console.log(videos, userName);
   return (
     <>
-   <Nav/>
-    <div>
-      <div className="Image">
-        {/* {videos.map((data,index)=>{
-          return( */}
-          <video  controls src={videos.videoUrl} type="video/mp4"/>
-        {/* )})} */}
-      
-      </div>
-      {/* <div id="filmName">
+      <Nav />
+      <div>
+        <div className="Image">
+          <video src={videos[0]?.videoUrl} type="video/mp4" />
+          <h2 className="video-title">{videos[0]?.title}</h2>
+          <div className="video-data">
+            <p>14 Jan, 2023</p>
+            <p>14 Mins</p>
+            <p>200 views</p>
+          </div>
+          <div className="publisher">
+            <img
+              className="publisher-img"
+              src="https://img.freepik.com/premium-psd/psd-3d-male-cartoon-character-avatar-isolated-3d-rendering_460336-1517.jpg?w=740"
+              alt=""
+            />
+            <p>{userName}</p>
+          </div>
+        </div>
+        {/* <div id="filmName">
         <span className="film">Midway</span> <br />
         <span className="subtitle">Base On Real Events</span>
       </div>
@@ -58,15 +69,13 @@ const HomePage=()=> {
         />
         <span>user name</span>
       </div> */}
-    </div>
-    
-    <FetchVideo/>
+      </div>
+
+      <FetchVideo />
     </>
   );
-}
+};
 
 export default HomePage;
-
-
 
 // "https://raw.githubusercontent.com/Newton-School/audio-video-HTML-cypress-boilerplate/main/public/ghoul.mp4"
