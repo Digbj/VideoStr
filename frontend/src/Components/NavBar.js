@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 
 function Nav() {
 
@@ -11,9 +11,9 @@ function Nav() {
         <input type="text" placeholder="Search..." />
       </div>
       <div className="user-links">
-     <p>Login</p>
+   <Link to='/login'><p>Login</p></Link>
      <span>|</span>
-     <p>Register</p> 
+     <Link to='/login'> <p>Register</p></Link> 
       </div>
       
     </div>

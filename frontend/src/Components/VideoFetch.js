@@ -1,5 +1,6 @@
 import React, { useEffect ,useState} from "react";
 import axios from 'axios';
+import Vcarousel from "./Carausal";
 const FetchVideo=()=> {
     const [photos, setPhotos] = useState([])
     const [inp,setinp]=useState('river')
@@ -16,7 +17,6 @@ const FetchVideo=()=> {
         }
         getPic()
     }
-    GetData();
    
     useEffect(()=>{
       setinp("")
@@ -28,8 +28,9 @@ const FetchVideo=()=> {
       <div className="Fetch-container">
        <div className="util">
         <p>Recent</p>
-        <p>View All</p>
+        <button onClick={GetData}>View All</button>
        </div>
+       <Vcarousel/>
        <div className="Vid">
         {photos.map((task,index)=>{
             return(
@@ -46,31 +47,4 @@ const FetchVideo=()=> {
 
 
 
-  /** <div className="morethings">
-          <a href="/" className="recent">
-            Recent
-          </a>
-          <a href="/" className="viewall">
-            View All
-          </a>
-        </div>
   
-        <div class="row">
-          <div class="column">
-            <div class="image-container">
-              <img
-                src="https://th.bing.com/th/id/OIP.KWX4RI7xFtrDcJbXw_AgdQHaE7?pid=ImgDet&rs=1"
-                alt="moviePoster"
-              />
-              <div class="text-overlay">
-                <span className="film1">Midway</span> <br />
-                <span className="subtitle1">Base On Real Events</span>
-                <div id="details1">
-                  <span className="date1">12 Jan 2023</span>
-                  <span className="length1"> 14 Mins</span>
-                  <span className="views1"> 200 Views</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */
