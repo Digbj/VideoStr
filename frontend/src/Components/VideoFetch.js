@@ -2,6 +2,7 @@ import React, { useEffect ,useState} from "react";
 import axios from 'axios';
 import Vcarousel from "./Carausal";
 const FetchVideo=()=> {
+    const [viewAll,setviewAll]=useState(true)
     const [photos, setPhotos] = useState([])
     const [inp,setinp]=useState('river')
     const GetData=()=>{
@@ -17,7 +18,7 @@ const FetchVideo=()=> {
         }
         getPic()
     }
-   
+   GetData();
     useEffect(()=>{
       setinp("")
     },[])
@@ -25,26 +26,32 @@ const FetchVideo=()=> {
     
    
     return (
-      <div className="Fetch-container">
-       <div className="util">
-        <p>Recent</p>
-        <button onClick={GetData}>View All</button>
+      <>
+      <div className="util">
+        {<button>Recent</button>}
+        {viewAll?<button onClick={()=>{setviewAll(false)}}>View Less</button>:<button onClick={()=>{setviewAll(true)}}>View All</button>}
        </div>
-       <Vcarousel/>
-       <div className="Vid">
-        {photos.map((task,index)=>{
-            return(
-                <div key={index} className='F-img'>
-                    <img className='F-images' key={task.id} src={`https://live.staticflickr.com/${task.server}/${task.id}_${task.secret}_m.jpg`} alt={task.title} />
-                </div>
-            )
-        })}
+       <div>
+        {viewAll?(
+          <div className="Vid">
+          {photos.map((task,index)=>{
+              return(
+                  <div key={index} className='F-img'>
+                      <img className='F-images' key={task.id} src={`https://live.staticflickr.com/${task.server}/${task.id}_${task.secret}_m.jpg`} alt={task.title} />
+                  </div>
+              )
+          })}
+         </div>
+        ):<Vcarousel/>}
        </div>
-      </div>
+      </>
+     
     );
   }
   export default FetchVideo;
 
 
 
+  
+    
   

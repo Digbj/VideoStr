@@ -526,38 +526,44 @@ opacity: 0.79;
 
 /*---------------------------------------------Video Fetch-------------------------------------------------*/
 
-.Fetch-container{
-  margin-top: 330px;
-  /* display: flex; */
-  background: #000000;
-}
 .util{
-  display:flex;
+  margin-top: 333px;
+  background-color: #000000;
+  display: flex;
+  /* margin: 20px; */
   justify-content: space-between;
-  margin: 20px;
 }
-.util>p{
-  /* margin-top: 5px; */
-  color:#f8f8f8
-}
-.Vid{
-display: flex;
-flex-wrap: wrap;
-/* margin-top: 5px; */
-margin: 20px;
-justify-content: space-between;
-}
-.F-images{
-height:200px;
-width:200px;
-margin:5px;
+.util>button{
+  margin:20px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  text-decoration: underline;
+  border: hidden;
+  background-color: #000000;
+  font: normal normal medium 16px/22px Avenir;
+  letter-spacing: 0px;
+  color: #C4B4F8;
+  opacity: 1;
+  cursor: pointer;
 }
 
+.Vid{
+  background: #000;
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.F-images{
+  height:200px;
+  width:200px;
+  margin:10px;
+}
 /*----------------------------------------crousal----------------------------------*/
 .cra{
   background: #1301015a;
   margin: px;
   margin-top: 0;
+  opacity: 1;
 }
 
 .Cimg{
