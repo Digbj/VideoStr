@@ -12,7 +12,10 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-multi-carousel": "^2.8.2",
+<<<<<<< HEAD
+=======
     "react-redux": "^8.0.5",
+>>>>>>> bd40105f718d88e45b59dc18cef655daf456a9ab
     "react-router": "^6.9.0",
     "react-router-dom": "^6.9.0",
     "react-scripts": "5.0.1",
