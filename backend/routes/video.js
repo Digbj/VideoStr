@@ -38,7 +38,7 @@ router.put("/update/:id", verify, async (req, res) => {
     );
     res.status(200).json(updatedMovie);
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json(err.message);
   }
 });
 
@@ -53,18 +53,18 @@ router.get("/all", async (req, res) => {
   }
 });
 
-// router.get("/all-less", async (req, res) => {
-//   try {
-//     const video = await Video.find().limit(5);
-//     res.status(200).json(video);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+router.get("/:id", verify, async (req, res) => {
+  try {
+    const video = await Video.findById(req.params.id);
+    res.status(200).json(video);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 // get random video
 
-router.get("/get-random", verify, async (req, res) => {
+router.get("/get-random", async (req, res) => {
   try {
     const randomVideo = await Video.aggregate([{ $sample: { size: 1 } }]);
     res.status(200).json(randomVideo);
@@ -86,7 +86,7 @@ router.get("/get/:publisherId", verify, async (req, res) => {
 
 // search functionality
 
-router.get("/search", verify, async (req, res) => {
+router.get("/search", async (req, res) => {
   const searchQuery = req.query.title;
   try {
     const videos = await Video.find({
