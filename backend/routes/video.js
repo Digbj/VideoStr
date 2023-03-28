@@ -66,7 +66,7 @@ router.get("/all", async (req, res) => {
 
 router.get("/get-random", async (req, res) => {
   try {
-    const randomVideo = await Video.aggregate([{ $sample: { size: 1 } }]);
+    const randomVideo = await Video.aggregate([{ $sample: { size: 4 } }]);
     res.status(200).json(randomVideo);
   } catch (err) {
     res.status(500).json(err);

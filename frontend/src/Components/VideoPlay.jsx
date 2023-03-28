@@ -2,21 +2,27 @@ import React from "react";
 import { useLocation } from "react-router";
 import { DefaultPlayer as Video } from "react-html5video";
 import "react-html5video/dist/styles.css";
+import SuggestionVideo from "./SuggestionVideo";
+// import { Link } from "react-router-dom";
 // import Nav from "./NavBar";
 
 const VideoPlay = () => {
   const location = useLocation();
-  const movie = location.state?.movieData;
-  console.log(movie);
+
+  let movie = location.state?.movieData;
+
   return (
     <div className="play-video">
       {/* <Nav /> */}
       <div className="videos">
         <div className="main-video">
-          <Video autoplay loop className="video-player">
-            <source src={movie.videoUrl} type="video/mp4" />
-          </Video>
-          {/* <video src={movie.videoUrl} alt="main video" controls /> */}
+          <Video
+            autoPlay
+            className="video-player"
+            src={movie.videoUrl}
+            type="video/mp4"
+          />
+
           <div className="main-video-data">
             <div className="main-video-publisher">
               <img
@@ -36,6 +42,7 @@ const VideoPlay = () => {
             </div>
           </div>
         </div>
+        <SuggestionVideo />
       </div>
     </div>
   );
