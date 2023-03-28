@@ -29,7 +29,11 @@ const Login = () => {
           <p className="p3">at one place</p>
           <Link
             to="/register"
-            style={{ color: "white", fontSize: "18px", fontWeight: "600" }}
+            style={{
+              color: "white",
+              fontSize: "18px",
+              fontWeight: "600",
+            }}
           >
             Register
           </Link>

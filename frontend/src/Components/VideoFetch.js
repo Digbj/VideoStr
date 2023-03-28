@@ -29,7 +29,7 @@ const FetchVideo = () => {
     GetData();
   }, []);
 
-  console.log(videos);
+  // console.log(videos);
 
   return (
     <>

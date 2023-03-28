@@ -4,6 +4,13 @@ import { Link } from "react-router-dom";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+// import {
+//   getStorage,
+//   ref,
+//   uploadBytesResumable,
+//   getDownloadURL,
+// } from "firebase/storage";
+// import app from "../firebase";
 
 const Registration = () => {
   const [form, setform] = useState({
@@ -18,6 +25,7 @@ const Registration = () => {
   const [error, setError] = useState(true);
   const [errorMsg, setErrorMsg] = useState("");
   const [isfetching, setIsfetching] = useState(false);
+  // const [file, setFile] = useState(null);
   const navigate = useNavigate();
 
   const Handler = async (formData) => {
@@ -35,8 +43,13 @@ const Registration = () => {
       setErrorMsg("Password and Confirm Password should be same");
     } else {
       setIsfetching(true);
+
       try {
         setIsfetching(true);
+        //     const fileName = new Date().getTime() + file.name;
+        // const storage = getStorage(app);
+        // const storageRef = ref(storage, fileName);
+        // const uploadTask = uploadBytesResumable(storageRef, file);
         const res = await axios.post(
           "http://localhost:8080/api/users/register",
           {
@@ -57,6 +70,8 @@ const Registration = () => {
       }
     }
   };
+
+  // console.log(file);
 
   return (
     <div className="container">
@@ -81,9 +96,14 @@ const Registration = () => {
         <div className="regis">
           <h1>Register</h1>
           <p>Register to continue access pages</p>
-          <div className="profilepic">
-            <input type="file" placeholder="+" />
-          </div>
+          {/* <div className="profilepic">
+            {file && <img src={URL.createObjectURL(file)} alt="" />}
+            <input
+              type="file"
+              placeholder="+"
+              onChange={(e) => setFile(e.target.files[0])}
+            />
+          </div> */}
           <div className="inp">
             <input
               placeholder="Name..."

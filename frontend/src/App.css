@@ -84,6 +84,7 @@ body {
   color: #ffffff;
   text-transform: lowercase;
   opacity: 1;
+  margin-bottom: 150px;
 }
 .buttons {
   margin-top: 110px;
@@ -129,12 +130,40 @@ body {
   color: #ffffff;
   opacity: 1;
 }
-.profilepic {
+/* .profilepic {
   margin: auto;
   height: 60px;
   width: 60px;
   border-radius: 30px;
   border: 1px solid rgb(241, 206, 206);
+} */
+.profilepic {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  background: #282c34;
+  overflow: hidden;
+  margin: 0 auto;
+}
+.profilepic input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+.profilepic::before {
+  content: "+";
+  display: block;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  color: white;
 }
 .profilepic > input {
   margin: auto;
@@ -176,6 +205,7 @@ body {
   height: 575px;
   display: flex;
   align-content: center;
+  text-align: center;
 }
 .login-container {
   margin: auto;
@@ -224,36 +254,55 @@ body {
 
 /*---------------------------------VideoUploads-------------------------------*/
 .V-container {
-  border: 1px solid black;
+  /* border: 1px solid black;
   background: #000000 0% 0% no-repeat padding-box;
   border-radius: 5px;
   width: 760px;
   margin: auto;
-  margin-top: 40px;
+  margin-top: 40px; */
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .V-container2 {
-  margin: 20px;
+  /* margin: 20px; */
+  background-color: black;
+  top: 330px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  width: 800px;
+  border-radius: 5px;
+  z-index: 30000000;
+  border: 1px solid white;
   text-align: center;
 }
 
 .V-Title {
   display: flex;
   justify-content: space-between;
-  margin-top: 0px;
+  align-items: center;
+  height: 50px;
 }
 
 .V-Title > p {
-  margin-top: 0px;
-  font: normal normal bold 21px/26px Helvetica Neue;
+  /* margin-top: 0px; */
+  font-size: 20px;
   letter-spacing: 0px;
   color: #ffffff;
   opacity: 1;
+  padding-left: 20px;
 }
 .V-Title > button {
   height: 25px;
   background: #0a0a0a 0% 0% no-repeat padding-box;
   opacity: 1;
   color: #ffffff;
+  margin-right: 20px;
+  cursor: pointer;
 }
 
 .drag-drop {
@@ -264,9 +313,10 @@ body {
   /* margin:20px; */
   background: #4b4b5f 0% 0% no-repeat padding-box;
   border: 1px solid black;
-  border-radius: 3px;
-  height: 200px;
+  border-radius: 5px;
+  height: 170px;
   opacity: 1;
+  margin: 10px 50px;
 }
 .dd-image {
   height: 70px;
@@ -276,9 +326,10 @@ body {
 .drag-drop > p {
   margin-top: 5px;
   text-align: center;
-  font: normal normal bold 15px/20px Helvetica Neue;
+  font-size: 15px;
   letter-spacing: 0px;
   color: #ffffff;
+  margin-bottom: 5px;
 }
 .F-inp {
   position: relative;
@@ -307,33 +358,36 @@ body {
   text-align: left;
   margin-bottom: 0px;
   text-align: left;
-  font: normal normal 900 20px/24px Avenir;
+  font-size: 24px;
   letter-spacing: 0px;
   color: #ffffff;
   opacity: 1;
+  margin-left: 20px;
+  margin-top: 0;
 }
 
 .abc > input {
   background-color: #0c0c0c;
   color: #ffffff;
   height: 20px;
-  border-top-style: hidden;
-  border-right-style: hidden;
-  border-left-style: hidden;
-  border-bottom-style: groove;
+  width: 90%;
+  border: 1px solid #c4bdbd;
   opacity: 10;
+  margin-left: 20px;
+  border-radius: 5px;
+  padding: 5px 10px;
 }
 .abc > textarea {
   background-color: #0c0c0c;
   opacity: 10;
   color: #ffffff;
   margin-top: 5px;
-  border-top-style: hidden;
-  border-right-style: hidden;
-  border-left-style: hidden;
-  border-bottom-style: groove;
-  height: 75px;
+  width: 90%;
+  height: 50px;
   padding: 10px;
+  margin-left: 20px;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 .category {
   display: flex;
@@ -361,12 +415,17 @@ background-image: url("https://www.pngkit.com/png/full/273-2739733_white-drop-do
 }
 
 .Save {
-  margin-top: 20px;
+  margin: 20px auto;
   width: 110px;
   height: 39px;
   background: #c4b4f8 0% 0% no-repeat padding-box;
   border-radius: 28px;
   opacity: 0.79;
+  cursor: pointer;
+}
+
+.Save:disabled {
+  cursor: not-allowed;
 }
 
 /*----------------------------------Nav Bar---------------------------------------*/
@@ -841,4 +900,11 @@ span {
 .saveBtn {
   background-color: #c4b4f8;
   border: 1px solid #c4b4f8;
+}
+.deleteBtn:disabled {
+  cursor: not-allowed;
+}
+
+.saveBtn:disabled {
+  cursor: not-allowed;
 }

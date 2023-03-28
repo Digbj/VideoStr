@@ -31,7 +31,7 @@ router.delete("/delete/:id", verify, async (req, res) => {
 
 router.put("/update/:id", verify, async (req, res) => {
   try {
-    const updatedMovie = await Video.findByTdAndUpdate(
+    const updatedMovie = await Video.findByIdAndUpdate(
       req.params.id,
       { $set: req.body },
       { new: true }
@@ -53,14 +53,14 @@ router.get("/all", async (req, res) => {
   }
 });
 
-router.get("/:id", verify, async (req, res) => {
-  try {
-    const video = await Video.findById(req.params.id);
-    res.status(200).json(video);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+// router.get("/:id", verify, async (req, res) => {
+//   try {
+//     const video = await Video.findById(req.params.id);
+//     res.status(200).json(video);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 // get random video
 
