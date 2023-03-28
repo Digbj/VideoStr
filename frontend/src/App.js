@@ -10,6 +10,7 @@ import VideoUpload from "./Components/Vupload";
 import SearchPage from "./Components/SearchPage";
 import VideoPlay from "./Components/VideoPlay";
 import MyVid from "./Components/MyVid";
+import PageNotFound from "./Components/PageNot";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/search" element={<SearchPage />} />
         <Route path="/play-video" element={<VideoPlay />} />
         <Route path="/my-video" element={<MyVid />} />
+        <Route path='/*' element={<PageNotFound/>}/>
       </Routes>
     </BrowserRouter>
   );
