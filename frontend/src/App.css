@@ -760,13 +760,22 @@ span {
 
 .videos {
   display: flex;
+  gap: 20px;
   align-items: center;
   justify-content: center;
+  min-height: 100vh;
+  background-color: #000;
+}
+
+.suggestion-videos {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .main-video {
   min-height: calc(100vh - 60px);
-  max-width: 90vw;
+  max-width: 70vw;
   padding-top: 30px;
 }
 
