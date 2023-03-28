@@ -25,6 +25,7 @@ const MyVid = () => {
           },
         }
       );
+      console.log(res.data);
       setMyvid(res.data);
       setCurrentVideo(res.data[0]);
     };
@@ -89,78 +90,91 @@ const MyVid = () => {
 
   return (
     <>
-      <Nav setSearchQuery={setSearchQuery} />
-      {searchQuery === "" ? (
-        <div className="my-vid">
-          <div className="left">
-            <div className="my-videos">
-              {myvid.map((video) => (
-                <div
-                  className="my-video"
-                  onClick={() => setCurrentVideo(video)}
-                >
-                  <Smallvideo video={video} />
+      {myvid.length > 0 ? (
+        <>
+          <Nav setSearchQuery={setSearchQuery} />
+          {searchQuery === "" ? (
+            <div className="my-vid">
+              <div className="left">
+                <div className="my-videos">
+                  {myvid.map((video) => (
+                    <div
+                      className="my-video"
+                      onClick={() => setCurrentVideo(video)}
+                    >
+                      <Smallvideo video={video} />
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </div>
-          <div className="right">
-            <video src={currentVideo.videoUrl} />
-            <div className="my-video-data">
-              <input
-                type="text"
-                value={currentVideo.title}
-                className="my-video-title"
-                onChange={(e) =>
-                  setCurrentVideo({ ...currentVideo, title: e.target.value })
-                }
-              />
-              <div className="my-video-information">
-                <p>14 Jan, 2023</p>
-                <p>14 Mins</p>
-                <p>200 views</p>
+              </div>
+              <div className="right">
+                <video src={currentVideo.videoUrl} />
+                <div className="my-video-data">
+                  <input
+                    type="text"
+                    value={currentVideo.title}
+                    className="my-video-title"
+                    onChange={(e) =>
+                      setCurrentVideo({
+                        ...currentVideo,
+                        title: e.target.value,
+                      })
+                    }
+                  />
+                  <div className="my-video-information">
+                    <p>14 Jan, 2023</p>
+                    <p>14 Mins</p>
+                    <p>200 views</p>
+                  </div>
+                </div>
+                <div className="my-video-description">
+                  <p>Description</p>
+                  <textarea
+                    value={currentVideo.description}
+                    onChange={(e) =>
+                      setCurrentVideo({
+                        ...currentVideo,
+                        description: e.target.value,
+                      })
+                    }
+                  ></textarea>
+                </div>
+                <div className="my-video-buttons">
+                  <button
+                    className="deleteBtn"
+                    onClick={deleteClick}
+                    disabled={isDeleting}
+                  >
+                    Delete
+                  </button>
+                  <button
+                    className="saveBtn"
+                    onClick={updateClick}
+                    disabled={isSaving}
+                  >
+                    Save
+                  </button>
+                </div>
               </div>
             </div>
-            <div className="my-video-description">
-              <p>Description</p>
-              <textarea
-                value={currentVideo.description}
-                onChange={(e) =>
-                  setCurrentVideo({
-                    ...currentVideo,
-                    description: e.target.value,
-                  })
-                }
-              ></textarea>
+          ) : (
+            <div className="search-page">
+              <div className="searched-video">
+                {videos.map((video) => (
+                  <Link to="/play-video" state={{ movieData: video }}>
+                    <Smallvideo video={video} />
+                  </Link>
+                ))}
+              </div>
             </div>
-            <div className="my-video-buttons">
-              <button
-                className="deleteBtn"
-                onClick={deleteClick}
-                disabled={isDeleting}
-              >
-                Delete
-              </button>
-              <button
-                className="saveBtn"
-                onClick={updateClick}
-                disabled={isSaving}
-              >
-                Save
-              </button>
-            </div>
-          </div>
-        </div>
+          )}
+        </>
       ) : (
-        <div className="search-page">
-          <div className="searched-video">
-            {videos.map((video) => (
-              <Link to="/play-video" state={{ movieData: video }}>
-                <Smallvideo video={video} />
-              </Link>
-            ))}
-          </div>
-        </div>
+        <>
+          <h2 style={{ color: "black", margin: "auto" }}>
+            Please Upload Some Video
+          </h2>
+        </>
       )}
     </>
   );
