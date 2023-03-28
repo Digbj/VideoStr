@@ -27,6 +27,9 @@ const Smallvideo = ({ video }) => {
               alt=""
             />
           </div>
+          <div className="small-video-pause-btn">
+            <i class="fa-solid fa-play"></i>
+          </div>
         </div>
       </div>
     </div>

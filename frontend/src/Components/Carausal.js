@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import Smallvideo from "./Smallvideo";
 const Vcarousel = () => {
   const [videos, setVideos] = useState([]);
@@ -11,11 +12,7 @@ const Vcarousel = () => {
     const GetData = async () => {
       const url = `http://localhost:8080/api/videos/all`;
 
-      const res = await axios.get(url, {
-        headers: {
-          token: "Bearer " + currentUser.accessToken,
-        },
-      });
+      const res = await axios.get(url);
       setVideos(res.data.slice(0, 5));
     };
 
@@ -27,7 +24,9 @@ const Vcarousel = () => {
   return (
     <div className="view-less">
       {videos.map((video) => (
-        <Smallvideo video={video} />
+        <Link to="/play-video" state={{ movieData: video }}>
+          <Smallvideo video={video} />
+        </Link>
       ))}
     </div>
   );
